@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { resourcePosts } from '../data/resources'
 import { getResourceBody } from '../lib/posts'
 import { Markdown } from '../components/Markdown'
+import { Tag } from '../components/Tag'
 import NotFound from './NotFound'
 
 export default function ResourcePost() {
@@ -30,9 +31,7 @@ export default function ResourcePost() {
           <p className="post__excerpt muted">{meta.excerpt}</p>
           <div className="post__tags">
             {meta.tags.map((t) => (
-              <span key={t} className="tag">
-                {t}
-              </span>
+              <Tag key={t} label={t} />
             ))}
           </div>
         </header>

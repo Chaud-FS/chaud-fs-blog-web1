@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Card } from './Card'
+import { Tag } from './Tag'
 
 interface Props {
   to: string
@@ -24,9 +25,7 @@ export function PostCard({ to, title, excerpt, date, tags, meta, badge }: Props)
         <div className="post-card__foot">
           <div className="post-card__tags">
             {tags.slice(0, 4).map((t) => (
-              <span key={t} className="tag">
-                {t}
-              </span>
+              <Tag key={t} label={t} />
             ))}
           </div>
           {badge && <span className="post-card__badge mono">{badge}</span>}

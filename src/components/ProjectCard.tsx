@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import { Card } from './Card'
+import { Tag } from './Tag'
 import type { Project } from '../data/projects'
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <Card className="project-card">
       <div className="project-card__top">
-        <span className="tag">{project.category}</span>
+        <Tag label={project.category} />
         {project.github && (
           <a
             className="project-card__gh mono"
@@ -34,9 +35,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
       <div className="project-card__tags">
         {project.tags.map((t) => (
-          <span key={t} className="tag">
-            {t}
-          </span>
+          <Tag key={t} label={t} />
         ))}
       </div>
     </Card>

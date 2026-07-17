@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { blogPosts } from '../data/blog'
 import { getBlogBody } from '../lib/posts'
 import { Markdown } from '../components/Markdown'
+import { Tag } from '../components/Tag'
 import NotFound from './NotFound'
 
 export default function BlogPost() {
@@ -29,9 +30,7 @@ export default function BlogPost() {
           <p className="post__excerpt muted">{meta.excerpt}</p>
           <div className="post__tags">
             {meta.tags.map((t) => (
-              <span key={t} className="tag">
-                {t}
-              </span>
+              <Tag key={t} label={t} />
             ))}
           </div>
         </header>

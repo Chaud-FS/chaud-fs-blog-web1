@@ -223,6 +223,15 @@ img { max-width: 100%; display: block; }
   border-radius: 999px;
   padding: 4px 12px;
   background: rgba(255, 255, 255, 0.03);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
+    background 0.25s var(--ease);
+}
+.tag:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(142, 162, 255, 0.08);
 }
 
 /* ---------- Card ---------- */

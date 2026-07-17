@@ -1,6 +1,7 @@
 import { profile, education, skills } from '../data/profile'
 import { SectionHead } from './SectionHead'
 import { Reveal } from './Reveal'
+import { Tag } from './Tag'
 
 export function AboutSection() {
   return (
@@ -60,9 +61,7 @@ export function AboutSection() {
                     <div className="skill-card__group">{s.group}</div>
                     <div className="skill-card__items">
                       {s.items.map((it) => (
-                        <span key={it} className="tag">
-                          {it}
-                        </span>
+                        <Tag key={it} label={it} />
                       ))}
                     </div>
                   </div>
