@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export function NotFound() {
+export default function NotFound() {
   return (
     <section className="section page-top center" style={{ minHeight: '60vh' }}>
       <div className="container">

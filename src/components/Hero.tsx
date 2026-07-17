@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { Suspense, lazy, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { profile } from '../data/profile'
 import { projects } from '../data/projects'
 import { Reveal } from './Reveal'
-import Beams from './Beams'
+
+const Beams = lazy(() => import('./Beams'))
 
 const stats = [
   { k: '作品项目', v: String(projects.length), s: '开源 / 课程' },
@@ -14,6 +15,7 @@ const stats = [
 
 export function Hero() {
   const [reducedMotion, setReducedMotion] = useState(false)
+  const [tabVisible, setTabVisible] = useState(true)
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -23,10 +25,17 @@ export function Hero() {
     return () => mq.removeEventListener('change', onChange)
   }, [])
 
+  useEffect(() => {
+    const onVis = () => setTabVisible(!document.hidden)
+    document.addEventListener('visibilitychange', onVis)
+    return () => document.removeEventListener('visibilitychange', onVis)
+  }, [])
+
   return (
     <section className="hero" id="top">
       <div className="hero__beams" aria-hidden="true">
         {!reducedMotion && (
+          <Suspense fallback={null}>
           <Beams
             beamWidth={2}
             beamHeight={15}
@@ -36,7 +45,9 @@ export function Hero() {
             noiseIntensity={1.3}
             scale={0.18}
             rotation={0}
+            active={tabVisible}
           />
+          </Suspense>
         )}
       </div>
       <div className="container hero__inner">

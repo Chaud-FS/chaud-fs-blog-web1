@@ -55,8 +55,14 @@ function extendMaterial(BaseMaterial: any, cfg: any) {
   return mat
 }
 
-const CanvasWrapper = ({ children }: { children: ReactNode }) => (
-  <Canvas dpr={[1, 2]} frameloop="always" className="beams-container">
+const CanvasWrapper = ({
+  children,
+  frameloop,
+}: {
+  children: ReactNode
+  frameloop: 'always' | 'never'
+}) => (
+  <Canvas dpr={[1, 2]} frameloop={frameloop} className="beams-container">
     {children}
   </Canvas>
 )
@@ -155,6 +161,7 @@ interface BeamsProps {
   noiseIntensity?: number
   scale?: number
   rotation?: number
+  active?: boolean
 }
 
 const Beams = ({
@@ -166,6 +173,7 @@ const Beams = ({
   noiseIntensity = 1.75,
   scale = 0.2,
   rotation = 0,
+  active = true,
 }: BeamsProps) => {
   const meshRef = useRef<THREE.Mesh>(null)
   const beamMaterial = useMemo(
@@ -226,7 +234,7 @@ const Beams = ({
   )
 
   return (
-    <CanvasWrapper>
+    <CanvasWrapper frameloop={active ? 'always' : 'never'}>
       <group rotation={[0, 0, MathUtils.degToRad(rotation)]}>
         <PlaneNoise
           ref={meshRef}

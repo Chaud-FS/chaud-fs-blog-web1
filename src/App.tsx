@@ -1,17 +1,18 @@
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { Background } from './components/Background'
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
-import Home from './pages/Home'
-import Projects from './pages/Projects'
-import Blog from './pages/Blog'
-import BlogPost from './pages/BlogPost'
-import Resources from './pages/Resources'
-import ResourcePost from './pages/ResourcePost'
-import Feed from './pages/Feed'
-import About from './pages/About'
-import { NotFound } from './pages/NotFound'
+
+const Home = lazy(() => import('./pages/Home'))
+const Projects = lazy(() => import('./pages/Projects'))
+const Blog = lazy(() => import('./pages/Blog'))
+const BlogPost = lazy(() => import('./pages/BlogPost'))
+const Resources = lazy(() => import('./pages/Resources'))
+const ResourcePost = lazy(() => import('./pages/ResourcePost'))
+const Feed = lazy(() => import('./pages/Feed'))
+const About = lazy(() => import('./pages/About'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 function ScrollManager() {
   const { pathname, hash } = useLocation()
@@ -28,6 +29,10 @@ function ScrollManager() {
   return null
 }
 
+function RouteFallback() {
+  return <div className="route-fallback" aria-hidden="true" />
+}
+
 export default function App() {
   return (
     <>
@@ -35,17 +40,19 @@ export default function App() {
       <ScrollManager />
       <Navbar />
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/resources/:slug" element={<ResourcePost />} />
-          <Route path="/feed" element={<Feed />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<RouteFallback />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/resources/:slug" element={<ResourcePost />} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
     </>

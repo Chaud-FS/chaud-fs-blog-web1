@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { resourcePosts } from '../data/resources'
 import { getResourceBody } from '../lib/posts'
 import { Markdown } from '../components/Markdown'
-import { NotFound } from './NotFound'
+import NotFound from './NotFound'
 
 export default function ResourcePost() {
   const { slug } = useParams()

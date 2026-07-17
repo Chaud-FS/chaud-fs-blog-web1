@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { blogPosts } from '../data/blog'
 import { getBlogBody } from '../lib/posts'
 import { Markdown } from '../components/Markdown'
-import { NotFound } from './NotFound'
+import NotFound from './NotFound'
 
 export default function BlogPost() {
   const { slug } = useParams()
