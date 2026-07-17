@@ -17,6 +17,7 @@ export function Footer() {
             <Link to="/projects">项目</Link>
             <Link to="/blog">博客</Link>
             <Link to="/resources">资源</Link>
+            <Link to="/feed">资讯</Link>
           </div>
           <div>
             <div className="footer__label mono">联系</div>

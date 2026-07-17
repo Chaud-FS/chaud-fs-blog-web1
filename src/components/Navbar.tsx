@@ -9,6 +9,7 @@ const links = [
   { to: '/projects', label: '项目' },
   { to: '/blog', label: '博客' },
   { to: '/resources', label: '资源' },
+  { to: '/feed', label: '资讯' },
 ]
 
 export function Navbar() {

@@ -9,6 +9,7 @@ import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import Resources from './pages/Resources'
 import ResourcePost from './pages/ResourcePost'
+import Feed from './pages/Feed'
 import About from './pages/About'
 import { NotFound } from './pages/NotFound'
 
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/resources/:slug" element={<ResourcePost />} />
+          <Route path="/feed" element={<Feed />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
